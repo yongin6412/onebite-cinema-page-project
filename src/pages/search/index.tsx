@@ -12,7 +12,6 @@ export default function SearchPage() {
   const filterMovies = mock.filter((movie) =>
     movie.title.toLowerCase().includes(q.toLowerCase())
   );
-  console.log(filterMovies);
 
   return (
     <div className={style.search_container}>

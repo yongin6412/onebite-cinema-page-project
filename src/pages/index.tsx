@@ -9,9 +9,9 @@ export default function Home() {
     <div className={style.container}>
       <section>
         <h3>지금 가장 추천하는 영화</h3>
-        <div className={style.pop_container}>
+        <div className={style.recommend_container}>
           {mock.slice(0, 3).map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
+            <MovieItem key={`recomend-${movie.id}`} movie={movie} />
           ))}
         </div>
       </section>
@@ -19,7 +19,7 @@ export default function Home() {
         <h3>등록된 모든 영화</h3>
         <div className={style.all_container}>
           {mock.map((movie) => (
-            <MovieItem key={movie.id} movie={movie} />
+            <MovieItem key={`all-${movie.id}`} movie={movie} />
           ))}
         </div>
       </section>

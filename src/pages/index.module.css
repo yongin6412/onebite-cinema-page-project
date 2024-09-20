@@ -4,7 +4,7 @@
   gap: 30px;
 }
 
-.pop_container {
+.recommend_container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
