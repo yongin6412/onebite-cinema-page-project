@@ -1,10 +1,25 @@
 import style from "./[id].module.css";
 import { fetchDetailMovie } from "@/lib/fetch-detail-movie";
-import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { fetchMovies } from "@/lib/fetch-movie";
+import {
+  GetServerSidePropsContext,
+  InferGetServerSidePropsType,
+  InferGetStaticPropsType,
+} from "next";
 
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
+export const getStaticPaths = async () => {
+  const movies = await fetchMovies();
+  return {
+    paths: movies.map((movie) => ({
+      params: {
+        id: movie.id.toString(),
+      },
+    })),
+    fallback: true,
+  };
+};
+
+export const getStaticProps = async (context: GetServerSidePropsContext) => {
   const id = context.params!.id;
   const movieData = await fetchDetailMovie(Number(id));
 
@@ -17,7 +32,7 @@ export const getServerSideProps = async (
 
 export default function MoviePage({
   movieData,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!movieData) return "존재하지 않는 페이지입니다";
 
   return (
