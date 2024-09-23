@@ -1,7 +1,7 @@
 import { MovieData } from "@/types";
 
 export const fetchRecoMovies = async (): Promise<MovieData[]> => {
-  const url = `http://localhost:12345/movie/random`;
+  const url = `https://onebite-cinema-api-main-rho.vercel.app/movie/random`;
 
   try {
     const response = await fetch(url);
